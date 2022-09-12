@@ -1,0 +1,22 @@
+---
+export interface Props {
+  classes?: string;
+  image: string;
+  url: string;
+}
+
+const { classes = "", image, url } = Astro.props;
+---
+
+<div
+  class={`card overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl ${classes}`}
+>
+  <img src={image} alt="plant" class="h-auto w-full" />
+  <div class="p-4">
+    <slot />
+    <a
+      class="block w-full rounded-md bg-indigo-600 py-2 text-center text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75 cursor-pointer"
+      href={url}>See More</a
+    >
+  </div>
+</div>

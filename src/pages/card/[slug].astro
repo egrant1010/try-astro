@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Frontmatter } from "../../models/Frontmatter";
+import { compileCards } from "../../services/card.service";
+
+const { slug } = Astro.params;
+
+const cards = await Astro.glob<Frontmatter>("../../card/**/*.md");
+
+const compiledCards = compileCards(cards);
+
+const { title, image, body } = compiledCards.find((card) => card.slug === slug);
+
+export const getStaticPaths = async () => {
+  const cards = await Astro.glob<Frontmatter>("../../card/**/*.md");
+
+  return compileCards(cards).map((card) => ({ params: { slug: card.slug } }));
+};
+---
+
+<Layout title={title}>
+    <div class="card container mx-auto my-8">
+    <img src={image} alt="plant" class="card__image h-auto w-full mb-8" />
+    <div set:html={body} class="card__compiled-content"></div>
+    </div>
+</Layout>

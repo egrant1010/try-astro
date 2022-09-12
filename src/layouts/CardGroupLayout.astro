@@ -1,0 +1,11 @@
+---
+export interface Props {
+	classes?: string
+}
+
+const { classes = '' } = Astro.props;
+---
+
+<div class={`card-layout container mx-auto my-8 columns-4 gap-8 ${classes}`}>
+    <slot />
+</div>

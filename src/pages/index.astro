@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import CardGroupLayout from "../layouts/CardGroupLayout.astro";
+import { Frontmatter } from "../models/Frontmatter";
+import { compileCards } from "../services/card.service";
+
+const cards = await Astro.glob<Frontmatter>("../card/**/*.md");
+
+const compiledCards = compileCards(cards);
+---
+
+<Layout title="Welcome to Astro.">
+	<CardGroupLayout>
+		{compiledCards.map(card =>
+		<Card image={card.image} url={`card/${card.slug}`}>
+			<h2 class="text-3xl font-bold text-center">{card.title}</h2>
+			<p class="mb-4">{card.excerpt}</p>
+		</Card>)}
+	</CardGroupLayout>
+</Layout>
