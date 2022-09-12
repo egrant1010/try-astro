@@ -12,7 +12,7 @@ Inside this project, you'll find the following folders:
 ├── src/
 │   ├── assets
 │   │   └─- styles
-│   │       └── global.scss # Place styling for items that are hard to use Tailwinds class on
+│   │       └── global.scss # Place styling for items that are hard to use Tailwinds classes on
 │   ├── card/ # Content markdown goes here with frontmatter
 │   ├── components/
 │   │   ├─- TopNav.astro # Adds a nav bar at the top of the layout
